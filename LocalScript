@@ -1,0 +1,20 @@
+local player = game.Players.LocalPlayer
+local Camera = workspace.CurrentCamera --This is not just Camera because it won't work you have to use CurrentCamera
+
+player.CharacterAdded:Wait() --Wait until Player is loaded
+player.Character:WaitForChild("HumanoidRootPart") --Wait until Head is found
+
+Camera.CameraSubject = player.Character.HumanoidRootPart
+Camera.CameraType = Enum.CameraType.Attach --"Attach" doesnt workj u have to use enum
+Camera.FieldOfView = 40
+
+
+
+game:GetService("RunService").Stepped:Connect(function()
+	
+
+	Camera.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position) * CFrame.new(0, 0, 20)  --where it supposed to be
+	
+end)
+	
+
